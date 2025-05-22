@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Navbar from './components/Navbar';
+import AnimatedBackground from './components/AnimatedBackground';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import { LanguageProvider } from './context/LanguageContext';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+export default function App() {
+  return React.createElement(
+    LanguageProvider,
+    null,
+    React.createElement(AnimatedBackground, null),
+    React.createElement(Navbar, null),
+    React.createElement(Home, null),
+    React.createElement(Footer, null)
   );
 }
-
-export default App;
