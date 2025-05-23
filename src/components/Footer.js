@@ -2,7 +2,7 @@ import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import '../styles/Footer.css';
 
-const startupName = process.env.STARTUP_NAME;
+const startupName = process.env.REACT_APP_STARTUP_NAME;
 
 export default function Footer() {
   const { t } = useLanguage();

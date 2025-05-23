@@ -15,7 +15,7 @@ export default function Navbar() {
 
   const toggleMenu = () => setMenuActive(!menuActive);
 
-  const startupName = process.env.STARTUP_NAME;
+  const startupName = process.env.REACT_APP_STARTUP_NAME;
 
   const languageOptions = [
     { code: 'en', label: 'English' },
