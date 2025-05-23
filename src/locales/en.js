@@ -1,6 +1,6 @@
 const startupName = process.env.REACT_APP_STARTUP_NAME;
 
-export default {
+const en = {
   services: 'Services',
   aboutUs: 'About Us',
   workWithUs: 'Work With Us',
@@ -18,7 +18,15 @@ export default {
   servicesEquityTitle: 'Equity Program',
   servicesEquityText: 'For selected startups, we offer a work-for-equity package.',
   aboutContent: `${startupName} pays tribute to one of the fundamental experiments in computer vision: when a group of scientists used a cat to understand how the brain processes visual stimuli. The result? The feline’s brain lit up in areas recognizing edges and shapes—insights that laid the groundwork for modern convolutional neural networks. At ${startupName}, we use these scientific foundations, research, and innovation to push AI forward.`,
-  workContent: 'Join our team and help build amazing AI products.',
-  contactContent: 'Want to know what we can do for you? So do we!',
+  workTogether: 'Want to know what we can do for you? So do we! Lets get in touch and work together!',
+  hireUs: 'Hire us',
+  apply: 'Apply',
+  name: 'Name',
+  email: 'Email',
+  message: 'Message',
+  upload: 'Upload your CV',
+  send: 'Send',
   language: 'Language',
 };
+
+export default en;

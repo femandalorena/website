@@ -1,121 +1,238 @@
-/* General layout */
-.home {
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  height: 100vh;
-}
-
-/* Fullscreen section styles */
-.screen-section {
-  height: 100vh;
-  scroll-snap-align: start;
+main.home {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  background: rgba(0, 180, 216, 0.05);
-  color: #00b4d8;
-  text-align: center;
-  transition: background 0.5s ease;
+  gap: 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  color: white; /* Set all main text outside cards to white */
 }
 
-.screen-section.alt {
-  background: rgba(112, 238, 156, 0.08);
-  color: #0077b6;
-}
-
-.screen-section h2 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-}
-
-.screen-section p {
-  font-size: 1.3rem;
-  max-width: 700px;
-  line-height: 1.6;
-}
-
-/* Hero section */
+/* Hero Section */
 .hero {
-  background: linear-gradient(135deg, #001011, #003c4e);
-  color: #70ee9c;
+  text-align: center;
+  animation: fadeInUp 1s ease forwards;
 }
 
 .hero h1 {
-  font-size: 4rem;
-  margin-bottom: 1rem;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
 }
 
 .hero p {
   font-size: 1.5rem;
-  color: #b0ffda;
-  max-width: 600px;
+  color: #70ee9c;
+  font-weight: 600;
 }
 
-/* Contact section */
-.contact-form {
+/* About Us Section */
+#aboutUs {
+  text-align: left;
+  max-width: 700px;
+  margin: 0 auto;
+  animation: fadeInLeft 1s ease forwards;
+}
+
+#aboutUs h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+#aboutUs p {
+  line-height: 1.6;
+  font-size: 1.1rem;
+  color: #ddd;
+}
+
+/* Work Together Section */
+.work-together-section {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.work-together-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.work-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-  max-width: 480px;
-  margin-top: 2rem;
+  gap: 1.25rem;
+  background: rgba(112, 238, 156, 0.1);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(112, 238, 156, 0.3);
 }
 
-.contact-form input,
-.contact-form textarea {
-  padding: 0.9rem 1.2rem;
+.work-form label {
+  font-weight: 600;
+  color: #70ee9c;
+  text-align: left;
+}
+
+.work-form input,
+.work-form textarea,
+.work-form button {
+  padding: 0.75rem 1rem;
   border-radius: 8px;
-  border: 2px solid #70ee9c;
-  background: #001f26;
+  border: 1.5px solid #70ee9c;
+  background: transparent;
   color: white;
   font-size: 1rem;
-  font-family: 'Roboto', sans-serif;
-  transition: all 0.3s ease;
+  resize: vertical;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.contact-form input::placeholder,
-.contact-form textarea::placeholder {
-  color: #a1f1d1;
+.work-form input::placeholder,
+.work-form textarea::placeholder {
+  color: #a9d5b8;
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: #00b4d8;
+.work-form input:focus,
+.work-form textarea:focus {
   outline: none;
-  box-shadow: 0 0 10px rgba(112, 238, 156, 0.5);
+  background-color: #70ee9c;
+  color: #000f08;
+  border-color: #70ee9c;
 }
 
-.contact-form button {
-  background: #00b4d8;
-  border: none;
-  color: #001011;
-  font-size: 1.1rem;
-  font-weight: bold;
-  padding: 0.9rem 1.5rem;
-  border-radius: 8px;
+.work-form button {
   cursor: pointer;
-  transition: background 0.3s ease;
+  font-weight: 700;
+  border: none;
+  background-color: #70ee9c;
+  color: #000f08;
+  transition: background-color 0.3s ease;
 }
 
-.contact-form button:hover {
+.work-form button:hover,
+.work-form button:focus {
+  background-color: #4bb26d;
+  color: white;
+}
+
+/* Attachment input */
+.attachment-wrapper label {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+/* Toggle Button */
+.toggle-side {
+  margin-bottom: 2rem;
+}
+
+#toggleButton {
+  background: transparent;
+  border: 2px solid #70ee9c;
+  color: #70ee9c;
+  padding: 0.5rem 1.2rem;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#toggleButton:hover,
+#toggleButton:focus {
+  background-color: #70ee9c;
+  color: #000f08;
+  outline: none;
+}
+
+/* Services Section */
+#services {
+  max-width: 100%;
+  animation: fadeInUp 1s ease forwards;
+}
+
+#services h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.25rem;
+  text-align: center;
+  color: #70ee9c;
+}
+
+.services-intro {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #a9d5b8;
+}
+
+/* Services Carousel Grid */
+.services-grid {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: #70ee9c #000f08;
+}
+
+.services-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.services-grid::-webkit-scrollbar-thumb {
   background: #70ee9c;
-  color: #001011;
+  border-radius: 4px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.5rem;
-  }
+.services-grid::-webkit-scrollbar-track {
+  background: #000f08;
+}
 
-  .screen-section h2 {
-    font-size: 2.2rem;
-  }
+/* Service Cards */
+.service-card {
+  flex: 0 0 300px;
+  background-color: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 180, 216, 0.2);
+  transition: transform 0.3s ease;
+  color: #000f08;
+}
 
-  .screen-section p {
-    font-size: 1.1rem;
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-card h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: #00b4d8;
+}
+
+.service-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* General Fade Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

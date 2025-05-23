@@ -1,6 +1,6 @@
-const startupName = process.env.STARTUP_NAME;
+const startupName = process.env.REACT_APP_STARTUP_NAME;
 
-export default {
+const pt = {
   services: 'Serviços',
   aboutUs: 'Sobre Nós',
   workWithUs: 'Trabalhe Conosco',
@@ -18,7 +18,15 @@ export default {
   servicesEquityTitle: 'Programa de participação',
   servicesEquityText: 'Para startups selecionadas, oferecemos um pacote de trabalho por participação.',
   aboutContent: `${startupName} presta homenagem a um dos experimentos fundamentais da visão computacional: quando cientistas usaram um gato para entender como o cérebro processa estímulos visuais. O resultado? A parte do cérebro que detecta bordas e formas foi a primeira a se ativar — base para redes neurais convolucionais modernas. Na ${startupName}, usamos essas bases científicas, pesquisa e inovação para avançar a IA.`,
-  workContent: 'Junte-se à nossa equipe para construir produtos incríveis com IA.',
-  contactContent: 'Quer saber o que podemos fazer por você? Nós também!',
+  workTogether: 'Quer saber o que podemos fazer por você? Nós também! Vamos conversar e trabalhar juntos.',
+  hireUs: 'Contrate-nos',
+  apply: 'Candidate-se',
+  name: 'Nome',
+  email: 'Email',
+  message: 'Mensagem',
+  upload: 'Envie seu currículo',
+  send: 'Enviar',
   language: 'Idioma',
 };
+
+export default pt;

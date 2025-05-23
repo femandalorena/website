@@ -1,6 +1,6 @@
-const startupName = process.env.STARTUP_NAME;
+const startupName = process.env.REACT_APP_STARTUP_NAME;
 
-export default {
+const es = {
   services: 'Servicios',
   aboutUs: 'Sobre Nosotros',
   workWithUs: 'Trabaja con Nosotros',
@@ -18,7 +18,15 @@ export default {
   servicesEquityTitle: 'Startups Seleccionadas',
   servicesEquityText: 'Para startups seleccionadas ofrecemos un paquete de trabajo por participación.',
   aboutContent: `${startupName} rinde tributo a uno de los experimentos fundamentales del computer vision, remontandose a la historia: cuando un grupo de cientificos utilizó un gato para descubrir cómo veía el mundo. ¿el resultado? la parte del cerebro del felino que reconocia bordes y figuras era la primera en activarse. Esto fue fundamental para el desarrollo de redes neuronales convolucionales en un futuro, redes que primero reconocen los bordes y después pueden inferir de que figura se habla. ${startupName} es una startup que pretende usar estas bases científicas, la investigación y la innovación para avanzar en el campo de inteligencia artificial. nosotros estamos emocionados de desarrollar sistemas, de trabajar y sobretodo, mejorar.`,
-  workContent: 'Únete a nuestro equipo para construir productos de IA increíbles.',
-  contactContent: '¿Quieres saber qué podemos hacer por ti? ¡Nosotros también!',
+  workTogether: '¿Quieres saber qué podemos hacer por ti? ¡Nosotros también! Pongámonos en contacto y trabajemos juntos.',
+  hireUs: 'Contrátanos',
+  apply: 'Postúlate',
+  name: 'Nombre',
+  email: 'Correo electrónico',
+  message: 'Mensaje',
+  upload: 'Sube tu CV',
+  send: 'Enviar',
   language: 'Idioma',
 };
+
+export default es;
