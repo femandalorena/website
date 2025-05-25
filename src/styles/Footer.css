@@ -9,7 +9,6 @@
   backdrop-filter: blur(6px);
   box-shadow: 0 -6px 30px rgba(96, 235, 255, 0.08);
   color: var(--electric-blue);
-  font-family: 'Orbitron', 'Segoe UI', sans-serif;
   font-size: 1rem;
   min-height: 70px;
   margin: 0 auto;
