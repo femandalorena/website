@@ -11,21 +11,26 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-left">
-        <p className="footer-company">© 2025 {startupName}. {t.contactContent}</p>
-        <p className="footer-location">📍 La Paz, Bolivia</p>
+        <div className="startup-name">Made with ♥ by {startupName}</div>
+        <div className="footer-location">{t.location}</div>
+      </div>
+
+      <div className="footer-logo">
+        <img src="/logo.png" alt={`${startupName} logo`} className="footer-logo-img" draggable={false} />
       </div>
 
       <div className="footer-right">
-        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <Instagram size={24} />
+        <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <Instagram />
         </a>
-        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <Facebook size={24} />
+        <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <Facebook />
         </a>
-        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <Linkedin size={24} />
+        <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <Linkedin />
         </a>
       </div>
     </footer>
+
   );
 }

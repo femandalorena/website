@@ -1,80 +1,87 @@
 .footer {
-  position: relative;
-  z-index: 1;
-  background: rgba(0, 16, 17, 0.9);
-  border-top: 1px solid transparent;
-  border-image: linear-gradient(to right, #00b4d8, #70ee9c) 1;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 -6px 30px rgba(112, 238, 156, 0.05);
-  font-family: 'Orbitron', 'Segoe UI', sans-serif;
-  padding: 1.5rem 10rem;
-  color: #70ee9c;
-  font-size: 1 rem;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1.5rem 10rem;
+  background: rgba(2, 13, 48, 0.95); 
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(to right, var(--true-blue), var(--electric-blue)) 1;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 -6px 30px rgba(96, 235, 255, 0.08);
+  color: var(--electric-blue);
+  font-family: 'Orbitron', 'Segoe UI', sans-serif;
+  font-size: 1rem;
   min-height: 70px;
   margin: 0 auto;
 }
 
-/* Left side stacked vertically */
 .footer-left {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 0.2rem;
   flex: 1;
+  text-align: left;
 }
 
-.footer-company {
-  font-weight: 600;
-  font-size: 1rem;
+.footer-logo {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
 }
 
-.footer-location {
-  font-size: 0.85rem;
-  opacity: 0.8;
+.footer-logo-img {
+  height: 60px;
+  width: auto;
   user-select: none;
+  filter: drop-shadow(0 0 6px var(--electric-blue));
+  transition: filter 0.3s ease;
 }
 
-/* Right side: icons horizontally aligned */
+.footer-logo-img:hover {
+  filter: drop-shadow(0 0 12px var(--true-blue));
+  cursor: default;
+}
+
 .footer-right {
   display: flex;
   align-items: center;
   gap: 1.6rem;
+  flex: 1;
+  justify-content: flex-end;
 }
 
-/* Social icons style */
 .footer-right a {
-  color: #70ee9c;
+  color: var(--true-blue);
   display: inline-block;
   transition: all 0.3s ease;
-  filter: drop-shadow(0 0 4px rgba(112, 238, 156, 0.3));
+  filter: drop-shadow(0 0 4px rgba(0, 93, 221, 0.4)); 
 }
 
 .footer-right a:hover {
   transform: scale(1.15) translateY(-2px);
-  color: #00f0ab;
-  filter: drop-shadow(0 0 8px rgba(112, 238, 156, 0.6));
+  color: var(--electric-blue);
+  filter: drop-shadow(0 0 8px rgba(96, 235, 255, 0.6));
 }
 
-/* Responsive for small screens: stack left and right vertically */
-@media (max-width: 600px) {
+@media (max-width: 860px) {
   .footer {
     flex-direction: column;
-    align-items: center;
+    padding: 2rem 1.5rem;
     text-align: center;
-    min-height: auto;
   }
 
-  .footer-left {
-    align-items: center;
-    gap: 0.3rem;
+  .footer-left,
+  .footer-right {
+    flex: none;
+    justify-content: center;
     margin-bottom: 1rem;
   }
 
-  .footer-right {
-    gap: 1.2rem;
+  .footer-logo {
+    padding: 0;
+    margin-bottom: 1rem;
   }
 }
