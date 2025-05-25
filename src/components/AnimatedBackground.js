@@ -8,19 +8,22 @@ export default function AnimatedBackground() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
 
-    let width, height;
+    let width, height, dpr;
     let animationFrameId;
     let catTimer = 0;
-
-    let neurons = [];
+    const neurons = [];
 
     class Neuron {
       constructor() {
+        this.reset();
+      }
+
+      reset() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
         this.radius = 1 + Math.random() * 2;
-        this.vx = (Math.random() - 0.5) * 0.1;
-        this.vy = (Math.random() - 0.5) * 0.1;
+        this.vx = (Math.random() - 0.5) * 0.15;
+        this.vy = (Math.random() - 0.5) * 0.15;
       }
 
       update() {
@@ -33,9 +36,9 @@ export default function AnimatedBackground() {
 
       draw() {
         ctx.beginPath();
-        ctx.fillStyle = 'rgba(112, 238, 156, 0.2)';
-        ctx.shadowColor = 'rgba(112, 238, 156, 0.3)';
-        ctx.shadowBlur = 3;
+        ctx.fillStyle = 'rgba(112, 238, 156, 0.15)';
+        ctx.shadowColor = 'rgba(112, 238, 156, 0.2)';
+        ctx.shadowBlur = 2;
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
@@ -48,10 +51,10 @@ export default function AnimatedBackground() {
           const dx = neurons[i].x - neurons[j].x;
           const dy = neurons[i].y - neurons[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
+          if (dist < 100) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(112, 238, 156, ${1 - dist / 120})`;
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = `rgba(112, 238, 156, ${0.05 + (1 - dist / 100) * 0.2})`;
+            ctx.lineWidth = 0.4;
             ctx.moveTo(neurons[i].x, neurons[i].y);
             ctx.lineTo(neurons[j].x, neurons[j].y);
             ctx.stroke();
@@ -61,73 +64,72 @@ export default function AnimatedBackground() {
       }
     }
 
-    function drawCatFaceSilhouette() {
-      const x = Math.random() * (width - 150);
-      const y = Math.random() * (height - 150);
-
+    function drawCatFace(x, y, scale = 1) {
       ctx.save();
-      ctx.strokeStyle = 'rgba(112, 238, 156, 0.05)';
+      ctx.translate(x, y);
+      ctx.scale(scale, scale);
+      ctx.strokeStyle = 'rgba(112, 238, 156, 0.07)';
       ctx.lineWidth = 1;
 
-      // Head
+      // Head and ears
       ctx.beginPath();
-      ctx.moveTo(x + 50, y + 100); // chin
-      ctx.lineTo(x + 30, y + 60);  // left cheek
-      ctx.lineTo(x + 40, y + 40);  // left ear base
-      ctx.lineTo(x + 50, y + 20);  // left ear tip
-      ctx.lineTo(x + 60, y + 40);  // left ear base down
-      ctx.lineTo(x + 90, y + 40);  // right ear base up
-      ctx.lineTo(x + 100, y + 20); // right ear tip
-      ctx.lineTo(x + 110, y + 40); // right ear base down
-      ctx.lineTo(x + 120, y + 60); // right cheek
-      ctx.lineTo(x + 100, y + 100); // chin
+      ctx.moveTo(20, 40);
+      ctx.lineTo(15, 20);
+      ctx.lineTo(25, 30);
+      ctx.lineTo(40, 10);
+      ctx.lineTo(55, 30);
+      ctx.lineTo(65, 20);
+      ctx.lineTo(60, 40);
       ctx.closePath();
       ctx.stroke();
 
       // Eyes
       ctx.beginPath();
-      ctx.moveTo(x + 60, y + 70);
-      ctx.lineTo(x + 65, y + 70);
-      ctx.moveTo(x + 90, y + 70);
-      ctx.lineTo(x + 95, y + 70);
+      ctx.moveTo(30, 30);
+      ctx.lineTo(32, 30);
+      ctx.moveTo(50, 30);
+      ctx.lineTo(52, 30);
       ctx.stroke();
 
       // Nose
       ctx.beginPath();
-      ctx.moveTo(x + 78, y + 80);
-      ctx.lineTo(x + 82, y + 80);
-      ctx.lineTo(x + 80, y + 85);
+      ctx.moveTo(40, 35);
+      ctx.lineTo(42, 35);
+      ctx.lineTo(41, 38);
       ctx.closePath();
       ctx.stroke();
 
       // Whiskers
       ctx.beginPath();
-      // Left
-      ctx.moveTo(x + 50, y + 80);
-      ctx.lineTo(x + 20, y + 75);
-      ctx.moveTo(x + 50, y + 85);
-      ctx.lineTo(x + 20, y + 85);
-      ctx.moveTo(x + 50, y + 90);
-      ctx.lineTo(x + 20, y + 95);
-      // Right
-      ctx.moveTo(x + 100, y + 80);
-      ctx.lineTo(x + 130, y + 75);
-      ctx.moveTo(x + 100, y + 85);
-      ctx.lineTo(x + 130, y + 85);
-      ctx.moveTo(x + 100, y + 90);
-      ctx.lineTo(x + 130, y + 95);
+      ctx.moveTo(20, 35); ctx.lineTo(5, 34);
+      ctx.moveTo(20, 37); ctx.lineTo(5, 37);
+      ctx.moveTo(20, 39); ctx.lineTo(5, 40);
+      ctx.moveTo(60, 35); ctx.lineTo(75, 34);
+      ctx.moveTo(60, 37); ctx.lineTo(75, 37);
+      ctx.moveTo(60, 39); ctx.lineTo(75, 40);
       ctx.stroke();
 
       ctx.restore();
     }
 
-    function init() {
+    function drawRandomCat() {
+      const catX = Math.random() * (width - 80);
+      const catY = Math.random() * (height - 80);
+      drawCatFace(catX, catY, 1.2);
+    }
+
+    function initCanvas() {
+      dpr = window.devicePixelRatio || 1;
       width = window.innerWidth;
       height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-      neurons = [];
-      for (let i = 0; i < 70; i++) {
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      neurons.length = 0;
+      for (let i = 0; i < 60; i++) {
         neurons.push(new Neuron());
       }
     }
@@ -143,8 +145,8 @@ export default function AnimatedBackground() {
       connectNeurons();
 
       if (catTimer <= 0) {
-        drawCatFaceSilhouette();
-        catTimer = Math.floor(Math.random() * 300) + 200; // every 200–500 frames
+        drawRandomCat();
+        catTimer = Math.floor(Math.random() * 300) + 300; // every 300–600 frames
       } else {
         catTimer--;
       }
@@ -152,14 +154,13 @@ export default function AnimatedBackground() {
       animationFrameId = requestAnimationFrame(animate);
     }
 
-    init();
+    initCanvas();
     animate();
-
-    window.addEventListener('resize', init);
+    window.addEventListener('resize', initCanvas);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('resize', init);
+      window.removeEventListener('resize', initCanvas);
     };
   }, []);
 

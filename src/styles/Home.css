@@ -2,7 +2,6 @@ main.home {
   display: flex;
   flex-direction: column;
   gap: 5rem;
-  max-width: 1200px;
   margin: 0 auto;
   padding: 3rem 1.5rem;
   color: white; /* Set all main text outside cards to white */

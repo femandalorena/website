@@ -11,12 +11,36 @@ const flags = {
 
 export default function Navbar() {
   const [menuActive, setMenuActive] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const { language, switchLanguage, t } = useLanguage();
 
-  const toggleMenu = () => setMenuActive(!menuActive);
+  const toggleMenu = () => setMenuActive(prev => !prev);
+
+  const toggleDropdown = () => {
+    if (dropdownOpen) {
+      setIsClosing(true);
+      setTimeout(() => {
+        setDropdownOpen(false);
+        setIsClosing(false);
+      }, 250);
+    } else {
+      setDropdownOpen(true);
+    }
+  };
+
+  const handleLanguageChange = (code) => {
+    switchLanguage(code);
+    setIsClosing(true);
+    setTimeout(() => {
+      setDropdownOpen(false);
+      setIsClosing(false);
+    }, 250);
+  };
 
   const startupName = process.env.REACT_APP_STARTUP_NAME;
 
+  const navSections = ['services', 'aboutUs', 'workWithUs', 'contact'];
   const languageOptions = [
     { code: 'en', label: 'English' },
     { code: 'es', label: 'Español' },
@@ -24,86 +48,87 @@ export default function Navbar() {
     { code: 'pt', label: 'Português' },
   ];
 
-  return React.createElement(
-    'nav',
-    { className: 'navbar' },
-    React.createElement(
-      'div',
-      { className: 'navbar-left' },
-      React.createElement(
-        'div',
-        { className: 'logo' },
-        startupName
-      ),
-      React.createElement(
-        'div',
-        { className: menuActive ? 'nav-links active' : 'nav-links' },
-        ['services', 'aboutUs', 'workWithUs', 'contact'].map((section) =>
-          React.createElement(
-            'a',
-            { key: section, href: `#${section.toLowerCase()}`, onClick: () => setMenuActive(false) },
-            t[section]
-          )
-        )
-      ),
-    ),
-    React.createElement(
-      'div',
-      { className: 'navbar-right' },
-      React.createElement(
-        'div',
-        { className: 'language-dropdown' },
-        React.createElement(
-          'button',
-          {
-            className: 'language-button',
-            onClick: () => setMenuActive(false),
-            title: t.language,
-            'aria-label': 'Select Language',
-          },
-          React.createElement('img', {
-            src: flags[language],
-            alt: language,
-            style: { width: '24px', height: '18px', marginRight: '8px', verticalAlign: 'middle', borderRadius: '3px', boxShadow: '0 0 4px rgba(0,0,0,0.2)' }
-          }),
-          language.toUpperCase()
-        ),
-        React.createElement(
-          'ul',
-          { className: 'language-menu' },
-          languageOptions.map(({ code, label }) =>
-            React.createElement(
-              'li',
-              {
-                key: code,
-                className: code === language ? 'active' : '',
-                onClick: () => switchLanguage(code),
-                role: 'button',
-                tabIndex: 0,
-                onKeyPress: (e) => { if (e.key === 'Enter') switchLanguage(code); },
-              },
-              React.createElement('img', {
-                src: flags[code],
-                alt: label,
-                style: { width: '24px', height: '18px', marginRight: '8px', verticalAlign: 'middle', borderRadius: '3px', boxShadow: '0 0 4px rgba(0,0,0,0.2)' }
-              }),
-              label
-            )
-          )
-        )
-      ),
-      React.createElement(
-        'button',
-        {
-          className: 'nav-toggle',
-          onClick: toggleMenu,
-          'aria-label': 'Toggle Menu',
-          'aria-expanded': menuActive,
-        },
-        menuActive
-          ? React.createElement('span', { className: 'close-icon' }, '✖')
-          : React.createElement('span', { className: 'menu-icon' }, '☰')
-      )
-    )
+  return (
+    <nav className="navbar" role="navigation" aria-label="Main navigation">
+      <div className="navbar-left">
+        <div className="title-logo-wrapper">
+          <img src="/logo.png" alt="Logo" className="logo-img" draggable={false} />
+          <h1 className="enterprise-title">{startupName}</h1>
+        </div>
+
+        <div className={`nav-links${menuActive ? ' active' : ''}`}>
+          {navSections.map(section => (
+            <a
+              key={section}
+              href={`#${section.toLowerCase()}`}
+              onClick={() => setMenuActive(false)}
+              className="nav-link"
+              tabIndex={menuActive ? 0 : -1}
+            >
+              {t[section]}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div className="navbar-right" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <div className="language-dropdown">
+          <button
+            className="language-button"
+            onClick={toggleDropdown}
+            title={t.language}
+            aria-haspopup="listbox"
+            aria-expanded={dropdownOpen}
+            type="button"
+          >
+            <img src={flags[language]} alt={`${language} flag`} className="flag-icon" draggable={false} />
+            {language.toUpperCase()}
+            <span className={`dropdown-arrow${dropdownOpen ? ' open' : ''}`} aria-hidden="true">&#9662;</span>
+          </button>
+
+          {(dropdownOpen || isClosing) && (
+            <ul
+              className={`language-menu${dropdownOpen && !isClosing ? ' opening' : ''}${isClosing ? ' closing' : ''}`}
+              role="listbox"
+              tabIndex={-1}
+            >
+              {languageOptions.map(({ code, label }) => (
+                <li
+                  key={code}
+                  role="option"
+                  aria-selected={language === code}
+                  className={language === code ? 'active' : ''}
+                  onClick={() => handleLanguageChange(code)}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleLanguageChange(code);
+                    }
+                  }}
+                  tabIndex={0}
+                >
+                  <img src={flags[code]} alt={`${label} flag`} className="flag-icon" draggable={false} />
+                  {label}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <button
+          className="nav-toggle"
+          onClick={toggleMenu}
+          aria-label={menuActive ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuActive}
+          type="button"
+        >
+          {menuActive ? (
+            <span className="close-icon" aria-hidden="true">&times;</span>
+          ) : (
+            <span className="menu-icon" aria-hidden="true">&#9776;</span>
+          )}
+        </button>
+      </div>
+    </nav>
   );
 }

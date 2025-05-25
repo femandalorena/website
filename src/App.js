@@ -4,6 +4,7 @@ import AnimatedBackground from './components/AnimatedBackground';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import { LanguageProvider } from './context/LanguageContext';
+import './styles/colors.css';
 
 export default function App() {
   return React.createElement(
