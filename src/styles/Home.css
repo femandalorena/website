@@ -4,7 +4,7 @@ main.home {
   gap: 5rem;
   margin: 0 auto;
   padding: 3rem 1.5rem;
-  color: white; /* Set all main text outside cards to white */
+  color: white;
 }
 
 /* Hero Section */
@@ -20,7 +20,7 @@ main.home {
 
 .hero p {
   font-size: 1.5rem;
-  color: #70ee9c;
+  color: #ffd166;
   font-weight: 600;
 }
 
@@ -40,7 +40,7 @@ main.home {
 #aboutUs p {
   line-height: 1.6;
   font-size: 1.1rem;
-  color: #ddd;
+  color: #ccc;
 }
 
 /* Work Together Section */
@@ -60,15 +60,15 @@ main.home {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  background: rgba(112, 238, 156, 0.1);
+  background: rgba(255, 209, 102, 0.1);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(112, 238, 156, 0.3);
+  box-shadow: 0 0 10px rgba(255, 209, 102, 0.3);
 }
 
 .work-form label {
   font-weight: 600;
-  color: #70ee9c;
+  color: #ffd166;
   text-align: left;
 }
 
@@ -77,7 +77,7 @@ main.home {
 .work-form button {
   padding: 0.75rem 1rem;
   border-radius: 8px;
-  border: 1.5px solid #70ee9c;
+  border: 1.5px solid #ffd166;
   background: transparent;
   color: white;
   font-size: 1rem;
@@ -87,29 +87,29 @@ main.home {
 
 .work-form input::placeholder,
 .work-form textarea::placeholder {
-  color: #a9d5b8;
+  color: #ffe8b0;
 }
 
 .work-form input:focus,
 .work-form textarea:focus {
   outline: none;
-  background-color: #70ee9c;
+  background-color: #ffd166;
   color: #000f08;
-  border-color: #70ee9c;
+  border-color: #ffd166;
 }
 
 .work-form button {
   cursor: pointer;
   font-weight: 700;
   border: none;
-  background-color: #70ee9c;
+  background-color: #ffd166;
   color: #000f08;
   transition: background-color 0.3s ease;
 }
 
 .work-form button:hover,
 .work-form button:focus {
-  background-color: #4bb26d;
+  background-color: #e6b950;
   color: white;
 }
 
@@ -126,8 +126,8 @@ main.home {
 
 #toggleButton {
   background: transparent;
-  border: 2px solid #70ee9c;
-  color: #70ee9c;
+  border: 2px solid #ffd166;
+  color: #ffd166;
   padding: 0.5rem 1.2rem;
   border-radius: 30px;
   font-weight: 700;
@@ -137,7 +137,7 @@ main.home {
 
 #toggleButton:hover,
 #toggleButton:focus {
-  background-color: #70ee9c;
+  background-color: #ffd166;
   color: #000f08;
   outline: none;
 }
@@ -152,14 +152,14 @@ main.home {
   font-size: 2.2rem;
   margin-bottom: 0.25rem;
   text-align: center;
-  color: #70ee9c;
+  color: #ffd166;
 }
 
 .services-intro {
   text-align: center;
   margin-bottom: 2rem;
   font-size: 1.1rem;
-  color: #a9d5b8;
+  color: #ffe8b0;
 }
 
 /* Services Carousel Grid */
@@ -171,7 +171,7 @@ main.home {
   gap: 1.5rem;
   padding-bottom: 1rem;
   scrollbar-width: thin;
-  scrollbar-color: #70ee9c #000f08;
+  scrollbar-color: #ffd166 #000f08;
 }
 
 .services-grid::-webkit-scrollbar {
@@ -179,7 +179,7 @@ main.home {
 }
 
 .services-grid::-webkit-scrollbar-thumb {
-  background: #70ee9c;
+  background: #ffd166;
   border-radius: 4px;
 }
 

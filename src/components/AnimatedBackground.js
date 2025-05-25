@@ -21,14 +21,16 @@ export default function AnimatedBackground() {
       reset() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.radius = 1 + Math.random() * 2;
-        this.vx = (Math.random() - 0.5) * 0.15;
-        this.vy = (Math.random() - 0.5) * 0.15;
+        this.radius = 0.8 + Math.random() * 2.5;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.pulse = Math.random() * Math.PI * 2;
       }
 
       update() {
         this.x += this.vx;
         this.y += this.vy;
+        this.pulse += 0.02;
 
         if (this.x < 0 || this.x > width) this.vx *= -1;
         if (this.y < 0 || this.y > height) this.vy *= -1;
@@ -36,9 +38,10 @@ export default function AnimatedBackground() {
 
       draw() {
         ctx.beginPath();
-        ctx.fillStyle = 'rgba(112, 238, 156, 0.15)';
-        ctx.shadowColor = 'rgba(112, 238, 156, 0.2)';
-        ctx.shadowBlur = 2;
+        const alpha = 0.1 + Math.sin(this.pulse) * 0.05;
+        ctx.fillStyle = `rgba(112, 238, 156, ${alpha})`;
+        ctx.shadowColor = 'rgba(112, 238, 156, 0.15)';
+        ctx.shadowBlur = 3;
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
@@ -51,10 +54,11 @@ export default function AnimatedBackground() {
           const dx = neurons[i].x - neurons[j].x;
           const dy = neurons[i].y - neurons[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
+          if (dist < 130) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(112, 238, 156, ${0.05 + (1 - dist / 100) * 0.2})`;
-            ctx.lineWidth = 0.4;
+            const alpha = 0.05 + (1 - dist / 130) * 0.3;
+            ctx.strokeStyle = `rgba(112, 238, 156, ${alpha})`;
+            ctx.lineWidth = 0.3;
             ctx.moveTo(neurons[i].x, neurons[i].y);
             ctx.lineTo(neurons[j].x, neurons[j].y);
             ctx.stroke();
@@ -129,7 +133,7 @@ export default function AnimatedBackground() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       neurons.length = 0;
-      for (let i = 0; i < 60; i++) {
+      for (let i = 0; i < 120; i++) {
         neurons.push(new Neuron());
       }
     }
@@ -146,7 +150,7 @@ export default function AnimatedBackground() {
 
       if (catTimer <= 0) {
         drawRandomCat();
-        catTimer = Math.floor(Math.random() * 300) + 300; // every 300–600 frames
+        catTimer = Math.floor(Math.random() * 400) + 400;
       } else {
         catTimer--;
       }
