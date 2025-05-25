@@ -5,7 +5,7 @@
   padding: 1.5rem 10rem;
   background: rgba(2, 13, 48, 0.95); 
   border-top: 1px solid transparent;
-  border-image: linear-gradient(to right, var(--true-blue), var(--electric-blue)) 1;
+  border-image: linear-gradient(to right, var(--medium-yellow), var(--electric-blue)) 1;
   backdrop-filter: blur(6px);
   box-shadow: 0 -6px 30px rgba(96, 235, 255, 0.08);
   color: var(--electric-blue);

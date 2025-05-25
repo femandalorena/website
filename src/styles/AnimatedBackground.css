@@ -8,16 +8,19 @@
 
   background: linear-gradient(
     135deg,
-    #000f08 0%,
-    #003049 20%,
-    #00151a 40%,
-    #001314 60%,
-    #006579 80%,
-    #70ee9c 100%
+    var(--blue-dark) 0%,
+    var(--blue-light) 20%,
+    var(--true-blue) 40%,
+    var(--palatinate-blue) 55%,
+    var(--soft-electric-blue) 63%,
+    var(--palatinate-blue) 70%,
+    var(--true-blue) 80%,
+    var(--medium-yellow) 87%,
+    var(--blue-dark) 100%
   );
 
-  background-size: 400% 400%;
-  animation: gradientFlow 45s ease-in-out infinite;
+  background-size: 300% 300%;
+  animation: gradientFlow 60s ease-in-out infinite;
   transition: background 1s ease;
 }
 
@@ -25,36 +28,40 @@
   0% {
     background-position: 0% 50%;
   }
-  50% {
+  40% {
+    background-position: 100% 50%;
+  }
+  60% {
     background-position: 100% 50%;
   }
   100% {
     background-position: 0% 50%;
   }
 }
+
 .background-canvas::after {
   content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(
     ellipse at center,
-    rgba(112, 238, 156, 0.08),
+    rgba(96, 235, 255, 0.06),
     transparent 70%
   );
   pointer-events: none;
   mix-blend-mode: screen;
   filter: blur(40px);
-  opacity: 0.4;
-  animation: pulse 20s ease-in-out infinite;
+  opacity: 0.3;
+  animation: pulse 30s ease-in-out infinite;
 }
 
 @keyframes pulse {
   0%, 100% {
     transform: scale(1);
-    opacity: 0.3;
+    opacity: 0.2;
   }
   50% {
-    transform: scale(1.05);
-    opacity: 0.5;
+    transform: scale(1.04);
+    opacity: 0.35;
   }
 }
