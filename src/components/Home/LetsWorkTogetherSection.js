@@ -1,10 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { UploadCloud } from 'lucide-react';
 import '../../styles/home/LetsWorkTogetherSection.css';
 
-export default function LetsWorkTogetherSection({ t }) {
+export default function LetsWorkTogetherSection({ t, isWorkingWithUs, setIsWorkingWithUs }) {
 
-  const [isWorkingWithUs, setIsWorkingWithUs] = useState(true);
   const fileInputRef = useRef();
 
   const toggleMode = () => setIsWorkingWithUs(prev => !prev);

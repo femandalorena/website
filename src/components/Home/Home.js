@@ -6,7 +6,7 @@ import ServicesSection from './ServicesSection';
 import LetsWorkTogetherSection from './LetsWorkTogetherSection';
 import '../../styles/home/Home.css';
 
-export default function Home() {
+export default function Home({ isWorkingWithUs, setIsWorkingWithUs }) {
   const { t } = useLanguage();
 
   return (
@@ -14,7 +14,12 @@ export default function Home() {
       <HeroSection title={t.welcome} />
       <ServicesSection t={t} />
       <Section id="aboutUs" title={t.aboutUs} content={t.aboutContent} alt />
-      <LetsWorkTogetherSection t={t} />
+      <LetsWorkTogetherSection
+        id="workTogether"
+        t={t}
+        isWorkingWithUs={isWorkingWithUs}
+        setIsWorkingWithUs={setIsWorkingWithUs}
+      />
     </main>
   );
 }

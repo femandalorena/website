@@ -9,7 +9,7 @@ const flags = {
   pt: 'https://flagcdn.com/w40/pt.png',
 };
 
-export default function Navbar() {
+export default function Navbar({ isWorkingWithUs, setIsWorkingWithUs }) {
   const [menuActive, setMenuActive] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -48,6 +48,35 @@ export default function Navbar() {
     { code: 'pt', label: 'Português' },
   ];
 
+  // Map nav sections to actual IDs in the DOM for scrolling
+  const sectionScrollMap = {
+    services: 'services',          // Make sure ServicesSection has id="services"
+    aboutUs: 'aboutUs',            // Section id="aboutUs"
+    workWithUs: 'workTogether',   // LetsWorkTogetherSection id="workTogether"
+    contact: 'workTogether',       // Also scrolls to workTogether section (adjust if needed)
+  };
+
+  // Scroll to element with smooth behavior & close menu
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+    setMenuActive(false);
+  };
+
+  // Handle nav click, set workingWithUs state & scroll accordingly
+  const handleNavClick = (section) => {
+    if (section === 'workWithUs') {
+      setIsWorkingWithUs(true);
+    } else if (section === 'contact') {
+      setIsWorkingWithUs(false);
+    }
+
+    const targetId = sectionScrollMap[section] || section.toLowerCase();
+    scrollToSection(targetId);
+  };
+
   return (
     <nav className="navbar" role="navigation" aria-label="Main navigation">
       <div className="navbar-left">
@@ -60,8 +89,11 @@ export default function Navbar() {
           {navSections.map(section => (
             <a
               key={section}
-              href={`#${section.toLowerCase()}`}
-              onClick={() => setMenuActive(false)}
+              href={`#${(sectionScrollMap[section] || section.toLowerCase())}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(section);
+              }}
               className="nav-link"
               tabIndex={menuActive ? 0 : -1}
             >
