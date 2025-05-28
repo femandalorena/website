@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3rem 1.2rem;
+  padding: 3rem;
 }
 
 .hero-content {
@@ -10,7 +10,8 @@
   grid-template-columns: 60% 40%;
   width: 100%;
   align-items: center;
-  height: 555px;
+  margin: -3rem 0 5rem 0;
+  height: 500px;
 }
 
 .hero-text {

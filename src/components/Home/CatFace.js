@@ -5,89 +5,64 @@ export default function CatFace() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
     const ctx = canvas.getContext('2d');
+    canvas.width = 600;
+    canvas.height = 600;
 
-    const width = 500;
-    const height =500;
-    const dpr = window.devicePixelRatio || 1;
+    // Grid conversion factor
+    const scale = 60;
+    const offsetX = 50;
+    const offsetY = 550;
 
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
+    const convert = ([x, y]) => ({ x: x * scale + offsetX, y: offsetY - y * scale });
 
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, width, height);
+    const namedPoints = {
+      A: [0, 2.95], B: [0.3, 1.6], C: [1.2, 0], D: [2.8, 1.4], E: [2.8, 2.7], F: [4.2, 2],
+      G: [5.8, 1.4], H: [5.8, 2.7], I: [8.5, 2.95], J: [8.2, 1.6], K: [7.2, 0],
+      L: [4.2, 4], M: [3, 5.8], N: [5.6, 5.8], O: [1.4, 6.9], P: [7, 6.9],
+      Q: [1, 4.5], R: [7.4, 4.5],
+      // Hidden reference points for connections only
+      S: [0.5, 2.9], T: [3.7, 2.7], U: [4.2, 2.7], V: [4.7, 2.7], W: [8, 2.9],
+      X: [3.5, 1.4], Y: [4.9, 1.4], Z: [3.5, 0.5], α: [4.9, 0.5],
+    };
 
-    // Draw Cat Face in center of canvas (scale 2 for better details)
-    drawCatFace(ctx, width / 2 - 40, height / 2 - 25, 2);
+    const points = Object.fromEntries(
+      Object.entries(namedPoints).map(([name, coords]) => [name, convert(coords)])
+    );
 
+    const lines = [
+      ['A', 'S'], ['S', 'E'], ['B', 'E'], ['C', 'D'], ['E', 'D'], ['S', 'Q'], ['Q', 'O'],
+      ['O', 'M'], ['M', 'Q'], ['M', 'N'], ['N', 'P'], ['N', 'R'], ['N', 'L'], ['M', 'L'],
+      ['L', 'R'], ['L', 'E'], ['L', 'H'], ['R', 'W'], ['W', 'I'], ['H', 'W'], ['H', 'J'],
+      ['H', 'G'], ['G', 'K'], ['G', 'α'], ['α', 'Z'], ['Z', 'D'], ['D', 'X'], ['X', 'F'],
+      ['F', 'Y'], ['Y', 'G'], ['L', 'U'], ['U', 'T'], ['U', 'V'], ['T', 'F'], ['V', 'F'],
+      ['P', 'R'], ['Q', 'L']
+    ];
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = '#00b4d8';
+    ctx.fillStyle = '#70ee9c';
+    ctx.lineWidth = 3;
+
+    // Draw lines
+    lines.forEach(([a, b]) => {
+      const p1 = points[a];
+      const p2 = points[b];
+      ctx.beginPath();
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+      ctx.stroke();
+    });
+
+    // Draw visible points only (exclude reference points)
+    Object.entries(points).forEach(([name, { x, y }]) => {
+      if (!['S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'α'].includes(name)) {
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    });
   }, []);
 
-  function drawCatFace(ctx, x, y, scale = 1) {
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.scale(scale, scale);
-    ctx.strokeStyle = 'rgba(112, 238, 156, 0.9)';
-    ctx.lineWidth = 1.5;
-
-    // Head and ears
-    ctx.beginPath();
-    ctx.moveTo(20, 40);
-    ctx.lineTo(15, 20);
-    ctx.lineTo(25, 30);
-    ctx.lineTo(40, 10);
-    ctx.lineTo(55, 30);
-    ctx.lineTo(65, 20);
-    ctx.lineTo(60, 40);
-    ctx.closePath();
-    ctx.stroke();
-
-    // Eyes
-    ctx.beginPath();
-    ctx.moveTo(30, 30);
-    ctx.lineTo(32, 30);
-    ctx.moveTo(50, 30);
-    ctx.lineTo(52, 30);
-    ctx.stroke();
-
-    // Nose
-    ctx.beginPath();
-    ctx.moveTo(40, 35);
-    ctx.lineTo(42, 35);
-    ctx.lineTo(41, 38);
-    ctx.closePath();
-    ctx.stroke();
-
-    // Whiskers left
-    ctx.beginPath();
-    ctx.moveTo(20, 35);
-    ctx.lineTo(5, 34);
-    ctx.moveTo(20, 37);
-    ctx.lineTo(5, 37);
-    ctx.moveTo(20, 39);
-    ctx.lineTo(5, 40);
-
-    // Whiskers right
-    ctx.moveTo(60, 35);
-    ctx.lineTo(75, 34);
-    ctx.moveTo(60, 37);
-    ctx.lineTo(75, 37);
-    ctx.moveTo(60, 39);
-    ctx.lineTo(75, 40);
-
-    ctx.stroke();
-
-    ctx.restore();
-  }
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="cat-face"
-      aria-label="Cat face illustration"
-      role="img"
-    />
-  );
+  return <canvas ref={canvasRef} style={{ background: 'transparent', borderRadius: '8px' }} />;
 }
