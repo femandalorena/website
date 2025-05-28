@@ -1,0 +1,137 @@
+.work-together-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  width: 100%;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.work-together-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.work-info {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.work-info h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #ffd166;
+}
+
+.toggle-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 2px solid #ffd166;
+  background: transparent;
+  color: #ffd166;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.toggle-button:hover,
+.toggle-button:focus {
+  background-color: #ffd166;
+  color: #000f08;
+  outline: none;
+}
+
+.work-form {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background: rgba(255, 209, 102, 0.1);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 209, 102, 0.3);
+}
+
+.work-form h2 {
+  font-size: 1.5rem;
+  color: #ffd166;
+}
+
+.work-form label {
+  font-weight: 600;
+  color: #ffd166;
+  text-align: left;
+}
+
+.work-form input,
+.work-form textarea,
+.work-form button {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #ffd166;
+  background: transparent;
+  color: white;
+  font-size: 1rem;
+  resize: vertical;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.work-form input::placeholder,
+.work-form textarea::placeholder {
+  color: #ffe8b0;
+}
+
+.work-form input:focus,
+.work-form textarea:focus {
+  outline: none;
+  background-color: #ffd166;
+  color: #000f08;
+  border-color: #ffd166;
+}
+
+.work-form button {
+  cursor: pointer;
+  font-weight: 700;
+  border: none;
+  background-color: #ffd166;
+  color: #000f08;
+  transition: background-color 0.3s ease;
+}
+
+.work-form button:hover,
+.work-form button:focus {
+  background-color: #e6b950;
+  color: white;
+}
+
+.attachment-wrapper label {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+@media (max-width: 768px) {
+  .work-together-grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .work-info,
+  .work-form {
+    width: 100%;
+  }
+
+  .work-info {
+    text-align: center;
+  }
+}

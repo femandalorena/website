@@ -1,0 +1,42 @@
+#services {
+  max-width: 100%;
+  animation: fadeInUp 1s ease forwards;
+}
+
+#services h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.25rem;
+  text-align: center;
+  color: #ffd166;
+}
+
+.services-intro {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #ffe8b0;
+}
+
+.services-grid {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: #ffd166 #000f08;
+}
+
+.services-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.services-grid::-webkit-scrollbar-thumb {
+  background: #ffd166;
+  border-radius: 4px;
+}
+
+.services-grid::-webkit-scrollbar-track {
+  background: #000f08;
+}

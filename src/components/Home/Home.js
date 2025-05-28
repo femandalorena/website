@@ -4,7 +4,7 @@ import HeroSection from './HeroSection';
 import Section from './Section';
 import ServicesSection from './ServicesSection';
 import LetsWorkTogetherSection from './LetsWorkTogetherSection';
-import '../../styles/Home.css';
+import '../../styles/home/Home.css';
 
 export default function Home() {
   const { t } = useLanguage();

@@ -27,6 +27,7 @@ const pt = {
   upload: 'Envie seu currículo',
   send: 'Enviar',
   language: 'Idioma',
+  madeBy: `Feito com ♥ por ${startupName} 2025 ©`
 };
 
 export default pt;

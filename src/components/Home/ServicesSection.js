@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import ServiceCard from './ServiceCard';
+import '../../styles/home/ServicesSection.css';
 
 export default function ServicesSection({ t }) {
   const gridRef = useRef(null);

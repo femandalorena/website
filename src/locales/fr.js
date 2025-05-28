@@ -27,6 +27,7 @@ const fr = {
   upload: 'Téléversez votre CV',
   send: 'Envoyer',
   language: 'Langue',
+  madeBy: `Fait avec ♥ par ${startupName} 2025 ©`
 };
 
 export default fr;

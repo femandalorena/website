@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/home/ServiceCard.css';
 
 export default function ServiceCard({ title, text }) {
   return (

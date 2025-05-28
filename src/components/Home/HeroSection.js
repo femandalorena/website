@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/home/HeroSection.css';
 
 export default function HeroSection({ title }) {
   return (

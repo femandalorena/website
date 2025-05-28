@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/home/Section.css';
 
 export default function Section({ id, title, content, alt }) {
   return (
