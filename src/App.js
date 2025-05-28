@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import AnimatedBackground from './components/AnimatedBackground';
 import Footer from './components/Footer';
-import Home from './pages/Home';
+import Home from './components/Home/Home';
 import { LanguageProvider } from './context/LanguageContext';
 import './styles/colors.css';
 
