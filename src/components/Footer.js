@@ -11,12 +11,17 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-left">
-        <div className="startup-name">Made with ♥ by {startupName}</div>
+        <div className="startup-name">{t.madeBy}</div>
         <div className="footer-location">{t.location}</div>
       </div>
 
       <div className="footer-logo">
-        <img src="/logo.png" alt={`${startupName} logo`} className="footer-logo-img" draggable={false} />
+        <img
+          src="/logo.png"
+          alt={`${startupName} logo`}
+          className="footer-logo-img"
+          draggable={false}
+        />
       </div>
 
       <div className="footer-right">
@@ -31,6 +36,5 @@ export default function Footer() {
         </a>
       </div>
     </footer>
-
   );
 }

@@ -27,6 +27,7 @@ const de = {
   upload: 'Lebenslauf hochladen',
   send: 'Senden',
   language: 'Sprache',
+  madeBy: `Mit ♥ gemacht von ${startupName} 2025 ©`
 };
 
 export default de;

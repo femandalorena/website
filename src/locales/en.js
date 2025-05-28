@@ -19,6 +19,8 @@ const en = {
   servicesEquityText: 'For selected startups, we offer a work-for-equity package.',
   aboutContent: `${startupName} pays tribute to one of the fundamental experiments in computer vision: when a group of scientists used a cat to understand how the brain processes visual stimuli. The result? The feline’s brain lit up in areas recognizing edges and shapes—insights that laid the groundwork for modern convolutional neural networks. At ${startupName}, we use these scientific foundations, research, and innovation to push AI forward.`,
   workTogether: 'Want to know what we can do for you? So do we! Lets get in touch and work together!',
+  employmentWithUs: "Our startup aims to be a springboard for young talent to success. Our ideal employees are people who aspire to learn more about the intersection of artificial intelligence and crypto assets. We want our employees to have higher aspirations, to pursue postgraduate studies, and to have strong human values. Our evaluation metrics focus on finding people who need international experience, soft skills, and technical skills to be highly competitive in the global marketplace.",
+  hireOurServices: "When you hire our services, you gain access to a pool of professionals who are hungry to learn and collaborate. People whose dedication surpasses their talent. We are made up of workers in the early stages of their careers, with aspirations, dreams, and above all, a desire to excel. They are learning, but our startup guarantees that, with the guidance of internationally recognized individuals in the fields of artificial intelligence, software engineering, and crypto assets, we can train a competitive service tailored to the needs and demands of today's world.",
   hireUs: 'Hire us',
   apply: 'Apply',
   name: 'Name',
@@ -27,6 +29,7 @@ const en = {
   upload: 'Upload your CV',
   send: 'Send',
   language: 'Language',
+  madeBy: `Made with  ♥ by ${startupName} 2025 ©`
 };
 
 export default en;

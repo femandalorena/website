@@ -27,6 +27,7 @@ const es = {
   upload: 'Sube tu CV',
   send: 'Enviar',
   language: 'Idioma',
+  madeBy: `Hecho con ♥ por ${startupName} 2025 ©`
 };
 
 export default es;
