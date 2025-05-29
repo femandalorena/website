@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3rem;
+  
 }
 
 .hero-content {
@@ -10,8 +10,7 @@
   grid-template-columns: 60% 40%;
   width: 100%;
   align-items: center;
-  margin: -3rem 0 5rem 0;
-  height: 500px;
+  margin: -3rem 0 0 0;
 }
 
 .hero-text {
@@ -48,13 +47,13 @@
   0% {
     color: white;
   }
-  25% {
+  30% {
     color: var(--electric-blue);
   }
-  50% {
+  45% {
     color: var(--soft-electric-blue);
   }
-  75% {
+  70% {
     color: var(--soft-medium-yellow);
   }
   100% {
@@ -62,23 +61,16 @@
   }
 }
 
-.hero-image {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .cat-face {
   width: 100%;
   max-width: 100%;
   height: 100%;
   aspect-ratio: 1 / 1;
-  border-radius: 1rem;
-  background-color: transparent;
-  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  will-change: transform;
 }
+
 
 .cat-face::before,
 .cat-face::after {

@@ -1,19 +1,27 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 export default function CatFace() {
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
+  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    canvas.width = 600;
-    canvas.height = 600;
+    const container = containerRef.current;
 
-    const scale = 60;
-    const offsetX = 50;
-    const offsetY = 550;
+    let animationFrameId;
+    let width, height;
 
-    const convert = ([x, y]) => ({ x: x * scale + offsetX, y: offsetY - y * scale });
+    // Base points dimensions (approx)
+    const baseWidth = 8.5;
+    const baseHeight = 7;
+
+    // Convert base coords to canvas coords dynamically
+    const convert = (scale, offsetX, offsetY, point) => ({
+      x: point[0] * scale + offsetX,
+      y: offsetY - point[1] * scale,
+    });
 
     const basePoints = {
       A: [0, 2.95], B: [0.3, 1.6], C: [1.2, 0], D: [2.8, 1.4], E: [2.8, 2.7], F: [4.2, 2],
@@ -33,36 +41,60 @@ export default function CatFace() {
       ['P', 'R'], ['Q', 'L']
     ];
 
+    // Animation & draw function
     const animate = () => {
+      if (!canvas || !container) return;
+
+      width = container.clientWidth;
+      height = container.clientHeight;
+
+      // Set canvas pixel size for high-DPI screens
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(1, 0, 0, 1, 0, 0); // reset transform before scaling
+      ctx.scale(dpr, dpr);
+
+      // Calculate scale so cat fits nicely with some padding (10%)
+      const scaleX = (width * 0.8) / baseWidth;
+      const scaleY = (height * 0.8) / baseHeight;
+      const scale = Math.min(scaleX, scaleY);
+
+      // Center cat horizontally and vertically
+      const catWidthPx = baseWidth * scale;
+      const catHeightPx = baseHeight * scale;
+      const offsetX = (width - catWidthPx) / 2;
+      const offsetY = (height + catHeightPx) / 2; // Y-axis inverted in convert
+
+      // Calculate animation offsets
       const time = Date.now() * 0.002;
       const earOffset = Math.sin(time) * 0.15;
       const whiskerOffset = Math.cos(time * 1.5) * 0.1;
 
       const points = { ...basePoints };
 
-      // Animate left ear tip (O)
+      // Animate ears
       points.O = [1.4 + earOffset, 6.9 + earOffset];
-
-      // Animate right ear tip (P)
       points.P = [7 - earOffset, 6.9 + earOffset];
 
-      // Animate whisker tips
+      // Animate whiskers
       points.A = [0 + whiskerOffset, 2.95];
       points.B = [0.3 + whiskerOffset, 1.6];
       points.C = [1.2 + whiskerOffset, 0];
-
       points.I = [8.5 - whiskerOffset, 2.95];
       points.J = [8.2 - whiskerOffset, 1.6];
       points.K = [7.2 - whiskerOffset, 0];
 
       const convertedPoints = Object.fromEntries(
-        Object.entries(points).map(([name, coords]) => [name, convert(coords)])
+        Object.entries(points).map(([name, coords]) => [name, convert(scale, offsetX, offsetY, coords)])
       );
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, width, height);
+
+      ctx.lineWidth = hovered ? 8 : 6;
       ctx.strokeStyle = '#00b4d8';
-      ctx.fillStyle = '#70ee9c';
-      ctx.lineWidth = 4;
 
       lines.forEach(([a, b]) => {
         const p1 = convertedPoints[a];
@@ -73,6 +105,10 @@ export default function CatFace() {
         ctx.stroke();
       });
 
+      ctx.fillStyle = 'white';
+      ctx.shadowColor = hovered ? 'var(--electric-blue)' : 'white';
+      ctx.shadowBlur = hovered ? 20 : 12;
+
       Object.entries(convertedPoints).forEach(([name, { x, y }]) => {
         if (!['S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'α'].includes(name)) {
           ctx.beginPath();
@@ -81,13 +117,29 @@ export default function CatFace() {
         }
       });
 
-      requestAnimationFrame(animate);
+      ctx.shadowBlur = 0;
+      ctx.shadowColor = 'transparent';
+
+      animationFrameId = requestAnimationFrame(animate);
     };
 
     animate();
-  }, []);
+
+    // Cleanup on unmount
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [hovered]);
 
   return (
-    <canvas ref={canvasRef} style={{ background: 'transparent', borderRadius: '8px' }} />
+    <div
+      ref={containerRef}
+      className="cat-face"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ transition: 'transform 0.3s ease', transform: hovered ? 'scale(1.05)' : 'scale(1)' }}
+    >
+      <canvas ref={canvasRef} style={{ background: 'transparent', borderRadius: '8px', display: 'block' }} />
+    </div>
   );
 }
