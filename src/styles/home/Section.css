@@ -1,6 +1,7 @@
 #services {
   max-width: 100%;
   animation: fadeInUp 1s ease forwards;
+  scroll-margin-top: 150px;
 }
 
 #services h2 {
@@ -21,7 +22,8 @@
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 1rem 0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   gap: 1.5rem;
   padding-bottom: 1rem;
   scrollbar-width: thin;

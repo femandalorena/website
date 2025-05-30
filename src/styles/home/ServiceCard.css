@@ -1,24 +1,70 @@
+
+.service-card:hover {
+  transform: translateY(-15px);
+}
+
 .service-card {
-  flex: 0 0 300px;
+  flex: 1 1 220px;
+  max-width: 260px;
+  min-width: 160px;
   background-color: white;
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 180, 216, 0.2);
   transition: transform 0.3s ease;
   color: #000f08;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .service-card h3 {
   margin-top: 0;
-  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
   color: #00b4d8;
 }
 
 .service-card p {
+  margin: 0 auto;
+  margin-top: auto;
+  margin-bottom: auto;
   font-size: 1rem;
   line-height: 1.6;
+  max-width: 90%;
+}
+
+
+/* Medium screens */
+@media (max-width: 768px) {
+  .service-card {
+    width: 90%;
+    padding: 1.2rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.15rem;
+  }
+
+  .service-card p {
+    font-size: 0.95rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .service-card {
+    width: 95%;
+    padding: 1rem;
+    min-width: 0; 
+  }
+
+  .service-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+  }
 }
