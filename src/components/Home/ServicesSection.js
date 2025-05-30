@@ -4,7 +4,6 @@ import ServiceCard from './ServiceCard';
 import '../../styles/home/ServicesSection.css';
 
 export default function ServicesSection({ t }) {
-  // Destructure translations for clarity
   const {
     services,
     servicesIntro,

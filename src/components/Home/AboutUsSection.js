@@ -7,9 +7,12 @@ export default function AboutUsSection({ t }) {
     <section id="aboutUs" className="about-section">
       <div className="about-container">
         <div className="about-left fade-in">
-          <h2 className="about-title">{t.aboutUs}</h2>
-          <p className="about-description">{t.aboutContent}</p>
+          <div className="about-left-inner">
+            <h2 className="about-title">{t.aboutUs}</h2>
+            <p className="about-description">{t.aboutContent}</p>
+          </div>
         </div>
+
         <div className="about-right slide-in">
           <div className="about-block">
             <h3 className="block-title">{t.mission}</h3>
