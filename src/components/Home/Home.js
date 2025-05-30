@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import HeroSection from './HeroSection';
-import Section from './Section';
 import ServicesSection from './ServicesSection';
+import AboutUsSection from './AboutUsSection';
 import LetsWorkTogetherSection from './LetsWorkTogetherSection';
 import '../../styles/home/Home.css';
 
@@ -13,7 +13,7 @@ export default function Home({ isWorkingWithUs, setIsWorkingWithUs }) {
     <main className="home">
       <HeroSection title={t.welcome} />
       <ServicesSection t={t} />
-      <Section id="aboutUs" title={t.aboutUs} content={t.aboutContent} alt />
+      <AboutUsSection t={t} />
       <LetsWorkTogetherSection
         id="workTogether"
         t={t}
