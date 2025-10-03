@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Website Starter - Código Libre para Empresas y Emprendedores
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una plantilla web gratuita pensada para **empresas, startups o freelancers** que necesitan una página web provisional pero **no cuentan con presupuesto para desarrollarla desde cero**.
 
-## Available Scripts
+Forma parte de la ideología de **Gatena AI**: _exponer código abierto para quien lo necesite_, promoviendo la colaboración y el acceso libre a herramientas tecnológicas.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## ¿Cómo usar este repositorio?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clona el proyecto:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+git clone https://github.com/femandalorena/website.git
+cd website
+```
 
-### `npm test`
+2. Instala dependencias:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm install
+```
 
-### `npm run build`
+3. Crea un archivo `.env` en la raíz del proyecto y añade:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```env
+REACT_APP_STARTUP_NAME=Nombre de tu empresa
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Lanza el proyecto en modo desarrollo:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm start
+```
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Personalización
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Este proyecto está diseñado para ser **adaptado fácilmente**:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Cambia el nombre de la empresa con la variable `.env`
+- Modifica colores, textos e imágenes en `/src/`
+- Publica tu web en **Vercel**, **Netlify** o **GitHub Pages** en minutos
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Licencia y uso
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Este código es **libre y reutilizable**. Puedes adaptarlo, modificarlo o publicarlo para tus propios proyectos o clientes.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> **Única condición ética:** si lo usas, considera mantener una referencia a Gatena AI o devolver valor a la comunidad compartiendo tus mejoras.
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## ¿Por qué existe este proyecto?
 
-### Analyzing the Bundle Size
+Porque **toda empresa merece presencia digital**, incluso cuando el presupuesto es cero.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Si este proyecto te ayudó, compártelo con alguien más que lo necesite.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
