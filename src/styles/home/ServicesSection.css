@@ -1,0 +1,73 @@
+#services {
+  max-width: 100%;
+  animation: fadeInUp 1s ease forwards;
+ scroll-margin-top: 130px;
+}
+
+#services h2 {
+  font-size: 3rem;
+  text-align: center;
+  color: #ffd166;
+}
+
+.services-intro {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #ffe8b0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeUpDelayed {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.services-text,
+.services-subtext {
+  text-align: center;
+  opacity: 0;
+  animation: fadeUpDelayed 1s ease forwards;
+}
+
+.services-text {
+  font-size: 1.2rem;
+  color: #ffffff;
+  animation-delay: 0.5s;
+}
+
+.services-subtext {
+  font-size: 1rem;
+  color: #bbb;
+  margin-bottom: 3rem;
+  animation-delay: 0.8s;
+}
+
+.services-grid {
+  justify-content: center;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.services-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.services-grid::-webkit-scrollbar-thumb {
+  background: #ffd166;
+  border-radius: 4px;
+}
+
+.services-grid::-webkit-scrollbar-track {
+  background: #000f08;
+}
